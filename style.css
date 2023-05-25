@@ -135,6 +135,48 @@ header .shopping span{
  
   .list {
 	display: flex;
-    flex-direction: column
+   flex-direction: column
   }
+	
+	.card{
+		display: flex;
+   		flex-direction: column
+	}
+	
+	ul.listCard {
+    	scale: .66;
+    	justify-content: left;
+    	transform: translate(-130px, 0);
+		
 }
+	.active .card{
+    	left: calc(100% - 350px);
+}
+	
+	.listCard li{
+		display: grid;
+		grid-template-columns: 100px repeat(3, 1fr);
+		color: #fff;
+		row-gap: 1000px;
+		padding-bottom: 15px;
+	
+}
+	.card .checkOut div{
+		background-color: #E8BC0E;
+		width: 60%;
+		height: 70px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: bold;
+		cursor: pointer;
+
+}
+	
+	.card .checkOut{
+		position: absolute;
+		bottom: 0;
+		width: 120%;
+		display: grid;
+		grid-template-columns: auto;
+	}}
