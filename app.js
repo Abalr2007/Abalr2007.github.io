@@ -152,7 +152,7 @@ function reloadCard() {
       newDiv.innerHTML = `
         
         <div>${value.name}</div>
-        <div>£${value.price.toLocaleString()}</div>
+        <div>£${value.price.toFixed(2).toLocaleString()}</div>
         <div>
           <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
           <div class="count">${value.quantity}</div>
@@ -168,7 +168,7 @@ function reloadCard() {
   // Append the fragment to listCard
   listCard.appendChild(fragment);
 
-  total.innerText = totalPrice.toFixed(2).toLocaleString();
+  total.innerText ="£"+totalPrice.toFixed(2).toLocaleString();
   quantity.innerText = count;
 }
 

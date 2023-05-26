@@ -1,12 +1,22 @@
 body{
     background-color: #E3E7E8;
-    font-family: system-ui;
+    font-family:"Montserrat",sans-serif;
 }
 .container{
     width: 1000px;
     margin: auto;
     transition: 0.5s;
 }
+
+.Title{
+	font-size: 45px;
+}
+
+.Today{
+	font-size: 35px;
+	text-align: center;
+}
+
 header{
     display: grid;
     grid-template-columns: 1fr 50px;
@@ -60,7 +70,11 @@ header .shopping span{
     color: #fff;
     width: 100%;
     padding: 10px;
+	
 }
+
+
+
 .card{
     position: fixed;
     top:0;
@@ -103,6 +117,8 @@ header .shopping span{
     font-weight: bold;
     cursor: pointer;
 }
+
+
 .card .checkOut div:nth-child(2){
     background-color: #1C1F25;
     color: #fff;
@@ -130,6 +146,29 @@ header .shopping span{
 .listCard .count{
     margin: 0 10px;
 }
+@media screen and (min-width: 800px) {
+    .card .checkOut .closeShopping:hover{
+    background-color: #E8BC0E;  
+	transition: .25s background-color;
+
+}
+	.list .item button{
+    background-color: #1C1F25;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+	transition: .25s background-color;
+	border: none;
+	border-radius: 10px;
+}
+	.list .item button:hover{
+    background-color: #E8BC0E;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+}
+
+}
 @media only screen and (max-width: 767px) {
 	header .shopping{
 		position: relative;
@@ -151,9 +190,9 @@ header .shopping span{
 	}
 	
 	ul.listCard {
-    	scale: .66;
+    	scale: .8;
     	justify-content: left;
-    	transform: translate(-130px, -70px);
+    	transform: translate(-90px, -20px);
 }
 	.active .card{
     	left: calc(100% - 350px);
