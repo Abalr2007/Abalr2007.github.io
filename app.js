@@ -17,37 +17,37 @@ let products = [
     {
         id: 1,
         name: 'PRODUCT NAME 1',
-        image: '1.PNG',
+        image: '1.png',
         price: 1200.20
     },
     {
         id: 2,
         name: 'PRODUCT NAME 2',
-        image: '2.PNG',
+        image: '2.png',
         price: 120.99
     },
     {
         id: 3,
         name: 'PRODUCT NAME 3',
-        image: '3.PNG',
+        image: '3.png',
         price: 220.00
     },
     {
         id: 4,
         name: 'PRODUCT NAME 4',
-        image: '4.PNG',
+        image: '4.png',
         price: 123.00
     },
     {
         id: 5,
         name: 'PRODUCT NAME 5',
-        image: '5.PNG',
+        image: '5.png',
         price: 32.00
     },
     {
         id: 6,
         name: 'PRODUCT NAME 6',
-        image: '6.PNG',
+        image: '6.png',
         price: 12.00
     }
 ];
@@ -55,37 +55,37 @@ let special = [
     {
         id: 7,
         name: 'PRODUCT NAME 7',
-        image: '1.PNG',
+        image: '1.png',
         price: 1200.20
     },
     {
         id: 8,
         name: 'PRODUCT NAME 8',
-        image: '2.PNG',
+        image: '2.png',
         price: 120.99
     },
     {
         id: 9,
         name: 'PRODUCT NAME 9',
-        image: '3.PNG',
+        image: '3.png',
         price: 220.00
     },
     {
         id: 10,
         name: 'PRODUCT NAME 10',
-        image: '4.PNG',
+        image: '4.png',
         price: 123.00
     },
     {
         id: 11,
         name: 'PRODUCT NAME 11',
-        image: '5.PNG',
+        image: '5.png',
         price: 32.00
     },
     {
         id: 12,
         name: 'PRODUCT NAME 12',
-        image: '6.PNG',
+        image: '6.png',
         price: 12.00
     }
 ];
