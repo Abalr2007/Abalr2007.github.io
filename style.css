@@ -1,7 +1,41 @@
 body{
     background-color: #E3E7E8;
+	margin: 0;
     font-family:"Montserrat",sans-serif;
 }
+.navigation{
+	height: 100px;
+	overflow: hidden;
+	margin-top: 0;
+	background-color: white;
+		
+}
+.navigation .navigation-inner{
+	height: inherit;
+    width: 100%;
+}
+.navigation .container{
+	height: 100px;
+    position: relative;
+    z-index: 2000;
+	display: flex;
+        
+}
+
+.navigation .container .SiteBranding{
+	margin-top: 0px;
+}
+
+.navigation .navBar.navBar-option{
+	position: relative;
+	
+}
+
+#logo img{
+	width:182px;
+	
+}
+
 .container{
     width: 1000px;
     margin: auto;
@@ -10,6 +44,7 @@ body{
 
 .Title{
 	font-size: 45px;
+	flex-grow: 1;
 }
 
 .Today{
@@ -18,13 +53,15 @@ body{
 }
 
 header{
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 50px;
     margin-top: 50px;
+	align-items: center;
 }
 header .shopping{
     position: relative;
     text-align: right;
+	margin-left: auto;
 }
 header .shopping img{
     width: 40px;
@@ -70,6 +107,8 @@ header .shopping span{
     color: #fff;
     width: 100%;
     padding: 10px;
+	border: none;
+	border-radius: 10px;
 	
 }
 
@@ -91,8 +130,8 @@ header .shopping span{
    transform: translateX(-200px);
 }
 .card h1{
-    color: #E8BC0E;
-    font-weight: 100;
+    color: #FFFFFF;
+    font-size: 35px;
     margin: 0;
     padding: 0 20px;
     height: 80px;
@@ -108,7 +147,7 @@ header .shopping span{
 
 }
 .card .checkOut div{
-    background-color: #E8BC0E;
+    background-color: #ab3f1b;
     width: 100%;
     height: 70px;
     display: flex;
@@ -116,6 +155,7 @@ header .shopping span{
     align-items: center;
     font-weight: bold;
     cursor: pointer;
+	color: #FFFFFF;
 }
 
 
@@ -136,19 +176,30 @@ header .shopping span{
     justify-content: center;
     align-items: center;
 }
-.listCard li img{
-    width: 90%;
+
+.listCard .quant_change{
+    width: 35px;
+	height: 35px;
+	background: #fff;/* cursor: pointer; */
+	border: none;
+	border-radius:50%;	
 }
-.listCard li button{
-    background-color: #fff5;
-    border: none;
+
+.listCard .quant_change img{
+	width: calc(100%/2.5);
+    display: block;
+    margin: auto;
 }
 .listCard .count{
     margin: 0 10px;
 }
-@media screen and (min-width: 800px) {
+
+
+
+
+@media screen and (min-width: 1021px) {
     .card .checkOut .closeShopping:hover{
-    background-color: #E8BC0E;  
+    background-color: #ab3f1b;  
 	transition: .25s background-color;
 
 }
@@ -162,18 +213,18 @@ header .shopping span{
 	border-radius: 10px;
 }
 	.list .item button:hover{
-    background-color: #E8BC0E;
+    background-color: #ab3f1b;
     color: #fff;
     width: 100%;
     padding: 10px;
 }
 
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1020px) {
 	header .shopping{
 		position: relative;
 		text-align: right;
-		transform: translate(-40px,20px);
+		transform: translateX(-40px);
 }
   .container{
     width: 350px;
@@ -207,7 +258,7 @@ header .shopping span{
 		
 }
 	.card .checkOut div{
-		background-color: #E8BC0E;
+		background-color: #ab3f1b;
 		width: 60%;
 		height: 70px;
 		display: flex;

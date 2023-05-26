@@ -154,9 +154,9 @@ function reloadCard() {
         <div>${value.name}</div>
         <div>£${value.price.toFixed(2).toLocaleString()}</div>
         <div>
-          <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
+          <button class="quant_change" onclick="changeQuantity(${key}, ${value.quantity - 1})"><img src="Symbols/Minus.svg"></button>
           <div class="count">${value.quantity}</div>
-          <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
+          <button class="quant_change" onclick="changeQuantity(${key}, ${value.quantity + 1})"><img src="Symbols/Plus.svg"></button>
         </div>`;
       fragment.appendChild(newDiv);
     }
