@@ -107,11 +107,13 @@ header .shopping span{
     background-color: #1C1F25;
     color: #fff;
 }
-.listCard li{
+
+.listCard li {
     display: grid;
-    grid-template-columns: 100px repeat(3, 1fr);
-    color: #fff;
+    grid-template-columns: 100px repeat(2, 1fr);
+    color: rgb(255, 255, 255);
     row-gap: 10px;
+    padding: 15px;
 }
 .listCard li div{
     display: flex;
@@ -129,6 +131,11 @@ header .shopping span{
     margin: 0 10px;
 }
 @media only screen and (max-width: 767px) {
+	header .shopping{
+		position: relative;
+		text-align: right;
+		transform: translate(-40px,20px);
+}
   .container{
     width: 350px;
   }
@@ -146,8 +153,7 @@ header .shopping span{
 	ul.listCard {
     	scale: .66;
     	justify-content: left;
-    	transform: translate(-130px, 0);
-		
+    	transform: translate(-130px, -70px);
 }
 	.active .card{
     	left: calc(100% - 350px);
@@ -155,11 +161,11 @@ header .shopping span{
 	
 	.listCard li{
 		display: grid;
-		grid-template-columns: 100px repeat(3, 1fr);
-		color: #fff;
-		row-gap: 1000px;
-		padding-bottom: 15px;
-	
+		grid-template-columns: 100px repeat(2, 1fr);
+		color: rgb(255, 255, 255);
+		row-gap: 10px;
+		padding: 15px;
+		
 }
 	.card .checkOut div{
 		background-color: #E8BC0E;

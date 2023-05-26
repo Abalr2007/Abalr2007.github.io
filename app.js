@@ -135,30 +135,43 @@ function addToCart(key){
     }
     reloadCard();
 }
-function reloadCard(){
-    listCard.innerHTML = '';
-    let count = 0;
-    let totalPrice = 0;
-    listCards.forEach((value, key)=>{
-        totalPrice = totalPrice + value.price;
-        count = count + value.quantity;
-        if(value != null){
-            let newDiv = document.createElement('li');
-            newDiv.innerHTML = `
-                <div><img src="${value.image}"/></div>
-                <div>${value.name}</div>
-                <div>${value.price.toLocaleString()}</div>
-                <div>
-                    <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
-                    <div class="count">${value.quantity}</div>
-                    <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
-                </div>`;
-                listCard.appendChild(newDiv);
-        }
-    })
-    total.innerText = totalPrice.toFixed(2).toLocaleString();
-    quantity.innerText = count;
+function reloadCard() {
+  // Create a document fragment to build the updated content
+  const fragment = document.createDocumentFragment();
+  
+  let count = 0;
+  let totalPrice = 0;
+  
+  // Iterate over the list cards and add elements to the fragment
+  listCards.forEach((value, key) => {
+    totalPrice += value.price;
+    count += value.quantity;
+    
+    if (value != null) {
+      let newDiv = document.createElement('li');
+      newDiv.innerHTML = `
+        
+        <div>${value.name}</div>
+        <div>£${value.price.toLocaleString()}</div>
+        <div>
+          <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
+          <div class="count">${value.quantity}</div>
+          <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
+        </div>`;
+      fragment.appendChild(newDiv);
+    }
+  });
+
+  // Clear the existing content of listCard
+  listCard.innerHTML = '';
+
+  // Append the fragment to listCard
+  listCard.appendChild(fragment);
+
+  total.innerText = totalPrice.toFixed(2).toLocaleString();
+  quantity.innerText = count;
 }
+
 function changeQuantity(key, quantity){
     if(quantity == 0){
         delete listCards[key];
