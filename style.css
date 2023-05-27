@@ -215,6 +215,7 @@ header .shopping span{
 }
 .active .card{
     left: calc(100% - 500px);
+	z-index: 3001;
 }
 .active .container{
    transform: translateX(-200px);
@@ -340,7 +341,8 @@ header .shopping span{
 	
 	.card{
 		display: flex;
-   		flex-direction: column
+   		flex-direction: column;
+		
 	}
 	
 	ul.listCard {
@@ -350,6 +352,8 @@ header .shopping span{
 }
 	.active .card{
     	left: calc(100% - 350px);
+		z-index: 3001;
+		
 }
 	
 	.listCard li{
@@ -378,4 +382,7 @@ header .shopping span{
 		width: 120%;
 		display: grid;
 		grid-template-columns: auto;
-	}}
+	}
+	.listCard .quant_change img{
+		width: calc(100%/2);}
+}
