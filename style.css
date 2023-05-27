@@ -216,6 +216,8 @@ header .shopping span{
 .active .card{
     left: calc(100% - 500px);
 	z-index: 3001;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 .active .container{
    transform: translateX(-200px);
@@ -286,6 +288,12 @@ header .shopping span{
 }
 
 
+.checkOut.more-than-eleven {
+  /* Your CSS rule for when .listCard has more than 11 children */
+  /* For example, change the background color */
+  	background-color: yellow;
+	position: relative;
+}
 
 
 @media screen and (min-width: 1021px) {
@@ -294,6 +302,7 @@ header .shopping span{
 	transition: .25s background-color;
 
 }
+	
 	.list .item button{
     background-color: #1C1F25;
     color: #fff;
@@ -377,7 +386,6 @@ header .shopping span{
 }
 	
 	.card .checkOut{
-		position: absolute;
 		bottom: 0;
 		width: 120%;
 		display: grid;

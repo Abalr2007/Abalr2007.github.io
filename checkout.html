@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+	<head>
+	
+		<meta charset="utf-8">
+		<meta charset="UTF-8">
+ 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="checkout.css">
+		<title>Checkout Order</title>
+	
+	</head>
+	
+	<body>
+		
+			
+	<header class = "navigation">
+		<div class ="navigation-inner">
+	  <div class="container">
+		  <div class="SiteBranding">
+			  <a href = "https://www.thegate.pub" id="logo">
+				  <img src = "Images/Logo.png" alt="Logo" id ="Logo"/>
+			  </a>
+			  
+			  
+		  </div>
+		  <div id= "navbar-inner">
+			  <div class="main-navigation">
+				  <div class="menu">
+					  <ul id = "nav">
+					  	<li class = "navBaritem">
+							<a href="https://www.thegate.pub/">Home</a>
+						</li>
+						<li class = "navBaritem">
+							<a href="https://www.thegate.pub/about/">About</a>
+						</li>
+						<li class = "navBaritem">
+							<a href="https://www.thegate.pub/menu/">Menu</a>
+						</li>
+						<li class = "navBaritem">
+							<a href="https://www.thegate.pub/function-room/">Function Room</a>
+						</li>
+						<li class = "navBaritem">
+							<a href="https://www.thegate.pub/contact/">Contact</a>
+						</li>
+						  <li class = "navBaritem">
+							<a href="index.html">Order Dine-In</a>
+						</li>
+						  
+					  </ul>
+					  <a id="hamburger">
+							<span></span>
+							<span></span>
+							<span></span>
+                			</a>
+					  
+					  
+				  </div>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</header>
+    <ul class="mobile-navmenu">
+			<li class = "navBaritem">
+				<a href="https://www.thegate.pub/">Home</a>
+			</li>
+			<li class = "navBaritem">
+				<a href="https://www.thegate.pub/about/">About</a>
+			</li>
+			<li class = "navBaritem">
+				<a href="https://www.thegate.pub/menu/">Menu</a>
+			</li>
+			<li class = "navBaritem">
+				<a href="https://www.thegate.pub/function-room/">Function Room</a>
+			</li>
+			<li class = "navBaritem">
+				<a href="https://www.thegate.pub/contact/">Contact</a>
+			</li>
+			<li class = "navBaritem">
+				<a href="index.html">Order Dine-In</a>
+			</li>
+		
+	</ul>	  
+		
+		<table id = "ItemsList">
+  			<tbody>
+    			<tr>
+					<td></td>
+      				<td>NAME</td>
+      				<td>QUANTITY</td>
+      				<td>PRICE</td>
+    			</tr>
+			</tbody>
+		</table>
+		
+		<form action="send_email.php" method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required>
+
+  <label for="payment">Payment Method:</label>
+  <select id="payment" name="payment" required>
+    <option value="">Choose an option</option>
+    <option value="cash">Cash</option>
+    <option value="card">Card</option>
+  </select>
+
+  <label for="table">Table Number:</label>
+  <input type="number" id="table" name="table" required>
+
+  <input type="submit" value="Submit">
+</form>
+
+		<script src = "checkout.js"></script>
+		<script src="app.js"></script>
+		
+	</body>
+	
+</html>

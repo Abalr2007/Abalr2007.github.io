@@ -7,6 +7,16 @@ let total = document.querySelector('.total');
 let quantity = document.querySelector('.quantity');
 const hamburger = document.querySelector("#hamburger");
 const navMenu = document.querySelector(".mobile-navmenu");
+let cartCard = document.querySelector(".card");
+let CheckoutBar = document.querySelector(".checkOut");
+
+listCard.addEventListener('DOMSubtreeModified', () =>{
+	if (listCard.childElementCount > 11) {
+    CheckoutBar.classList.add('more-than-eleven');
+  } else {
+	CheckoutBar.classList.remove('more-than-eleven');
+  }
+})
 
 hamburger.addEventListener("click", () =>{
 	hamburger.classList.toggle("active");
@@ -18,6 +28,7 @@ document.onclick = function(e){
 	{
 		hamburger.classList.remove("active");
 		navMenu.classList.remove("active");
+		
 	}
 }
 
@@ -26,6 +37,10 @@ openShopping.addEventListener('click', ()=>{
 })
 closeShopping.addEventListener('click', ()=>{
     body.classList.remove('active');
+})
+
+total.addEventListener("click",()=>{
+	window.open("checkout.html", "_self");
 })
 
 let products = [
@@ -141,12 +156,16 @@ function initApp(){
     
 initApp();
 
-
+function addcarttolocal(cart){
+	localStorage.setItem("UserCart",JSON.stringify(cart));
+	alert(localStorage.getItem("UserCart"));
+}
 function addToCart(key){
     if(listCards[key] == null){
-        // copy product form list to list card
+        // copy product from list to list card
         listCards[key] = JSON.parse(JSON.stringify(products[key]));
         listCards[key].quantity = 1;
+		
     }
     reloadCard();
 }
@@ -156,6 +175,7 @@ function reloadCard() {
   
   let count = 0;
   let totalPrice = 0;
+	let cart = []
   
   // Iterate over the list cards and add elements to the fragment
   listCards.forEach((value, key) => {
@@ -174,10 +194,13 @@ function reloadCard() {
           <button class="quant_change" onclick="changeQuantity(${key}, ${value.quantity + 1})"><img src="Symbols/Plus.svg"></button>
         </div>`;
       fragment.appendChild(newDiv);
+		cart.push([listCards[key].id, value.image, value.name , value.quantity, value.price])
+		
     }
   });
 
   // Clear the existing content of listCard
+  addcarttolocal(cart);
   listCard.innerHTML = '';
 
   // Append the fragment to listCard
