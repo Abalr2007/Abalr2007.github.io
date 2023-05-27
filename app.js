@@ -5,6 +5,21 @@ let listCard = document.querySelector('.listCard');
 let body = document.querySelector('body');
 let total = document.querySelector('.total');
 let quantity = document.querySelector('.quantity');
+const hamburger = document.querySelector("#hamburger");
+const navMenu = document.querySelector(".mobile-navmenu");
+
+hamburger.addEventListener("click", () =>{
+	hamburger.classList.toggle("active");
+	navMenu.classList.toggle("active");
+})
+
+document.onclick = function(e){
+	if(e.target.className !== "mobile-navMenu" && e.target.id !== hamburger.id)
+	{
+		hamburger.classList.remove("active");
+		navMenu.classList.remove("active");
+	}
+}
 
 openShopping.addEventListener('click', ()=>{
     body.classList.add('active');
