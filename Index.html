@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>The Fake Convo</title>
+    <style>
+        body {
+            background-color: #efefef;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
+	        font-size: 15px;
+	        font-weight: normal;
+            max-width: 450px;
+	        margin: 50px auto;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #000000;
+            font-size: 3rem;
+            margin-top: 2rem;
+        }
+
+        h2 {
+            color: #000000;
+            font-size: 2rem;
+        }
+
+        .Pefixes {
+            background: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 40px;
+            margin: 20px auto; /* Center the form horizontally */
+        }
+
+        .Pefixes h3 {
+            font-size: 1.5rem;
+        }
+
+        .Pefixes input[type="text"] {
+            padding: 10px;
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+
+		#scriptText {
+			min-width:100%;
+			max-width:140%;
+			min-height:50px;
+			height:100%;
+			width:50%;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+        }
+
+        #updateButton {
+            background-color: #0074d9;
+            color: #ffffff;
+            padding: 10px 20px;
+            margin: 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #updateButton:hover {
+            background-color: #0056b3;
+        }
+
+        .emoji-background {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+
+		.emoji-background span {
+			filter: blur(1.5px); /* Adjust the blur value as needed */
+		}
+		
+    @keyframes float {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+    }
+		
+		.style-picker{
+
+			background: #ffffff;
+			border: 1px solid #ccc;
+			border-radius: 8px;
+			padding: 10px;
+			margin: 20px auto;
+		}
+    </style>
+        
+</head>
+
+<body>
+    <div class="emoji-background"></div>
+    <script src="script.js"></script>
+    <h1>The Fake Convo</h1>
+    <h2>Input Your Script Details</h2>
+
+    <div class="Pefixes">
+        <h3>Prefix For Speaker 1</h3>
+        <p style="color: #828282; font-size: 25px;">Grey</p>
+        <input id="speaker1Prefix" type="text" value="Speaker 1">
+        <p></p>
+        <h3>Prefix For Speaker 2</h3>
+        <p style="color: #0B93F6; font-size: 25px;">Blue</p>
+        <input id="speaker2Prefix" type="text" value="Speaker 2">
+    </div>
+	
+	<div class="style-picker">
+	  <p>
+		  <label style="font-size: 22px;">
+		    <input type="radio" name="Style-pick" value="Messenger" id="Style-pick_0">
+		    Messager</label>
+		  <br>
+		  <label style="font-size: 22px;">
+		    <input type="radio" name="Style-pick" value="IMessage" id="Style-pick_1">
+		    IMessage</label>
+		  <br>
+	  </p>
+    </div>
+
+    <textarea id="scriptText" name="text" oninput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"></textarea>
+
+	<div><button id="updateButton">Submit Script</button></div>
+
+    <script>
+		const radioButtonGroup = document.getElementsByName("Style-pick");
+		var Output_page = 'https://www.google.com/'
+        const textarea = document.getElementById("scriptText");
+        const speaker1PrefixInput = document.getElementById("speaker1Prefix");
+        const speaker2PrefixInput = document.getElementById("speaker2Prefix");
+
+        const updateButton = document.getElementById("updateButton");
+
+        updateButton.addEventListener("click", () => {
+			var checkedRadio = Array.from(radioButtonGroup).find(
+               (radio) => radio.checked
+            );
+			
+			if(checkedRadio.value == "Messenger"){
+				
+				var Output_page = 'output_Messenger.html';
+				
+			} else if(checkedRadio.value == "IMessage"){
+				
+				var Output_page = 'output_IMessage.html';
+				
+			}
+			
+            const script = textarea.value;
+            const speaker1Prefix = speaker1PrefixInput.value.trim();
+            const speaker2Prefix = speaker2PrefixInput.value.trim();
+
+            // Create an object with the script and prefixes data
+            const data = {
+                script: script,
+                speaker1Prefix: speaker1Prefix,
+                speaker2Prefix: speaker2Prefix,
+            };
+
+            // Convert the data to JSON
+            const jsonData = JSON.stringify(data);
+
+            // Send the data to the other HTML file via localStorage
+            localStorage.setItem('formattedScriptData', jsonData);
+			
+			
+
+            // Redirect to the other HTML file
+            window.location.href = Output_page;
+        });
+    </script>
+</body>
+
+</html>

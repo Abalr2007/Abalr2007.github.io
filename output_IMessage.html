@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Results</title>
+	<style>
+		
+		.main{
+			background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+			padding: 50px;
+		}
+
+
+		
+		.imessage {
+			background-color: #fff;
+			display: flex;
+			flex-direction: column;
+			font-family: "SanFrancisco";
+			font-size: 1.25rem;
+			margin: 0 auto 1rem;
+			max-width: 600px;
+			padding: 0.5rem 1.5rem;
+		}
+
+		.imessage p {
+		  border-radius: 1.15rem;
+		  line-height: 1.25;
+		  max-width: 75%;
+		  padding: 0.5rem .875rem;
+		  position: relative;
+		  word-wrap: break-word;
+		}
+
+		.imessage p::before,
+		.imessage p::after {
+		  bottom: -0.1rem;
+		  content: "";
+		  height: 1rem;
+		  position: absolute;
+		}
+
+		p.from-me {
+		  align-self: flex-end;
+		  background-color: #248bf5;
+		  color: #fff; 
+		}
+
+		p.from-me::before {
+		  border-bottom-left-radius: 0.8rem 0.7rem;
+		  border-right: 1rem solid #248bf5;
+		  right: -0.35rem;
+		  transform: translate(0, -0.1rem);
+		}
+
+		p.from-me::after {
+		  background-color: #fff;
+		  border-bottom-left-radius: 0.5rem;
+		  right: -40px;
+		  transform:translate(-30px, -2px);
+		  width: 10px;
+		}
+
+		p[class^="from-"] {
+		  margin: 1rem 0;
+		  width: fit-content;
+		}
+
+		p.from-me ~ p.from-me {
+		  margin: 0.25rem 0 0;
+		}
+
+		p.from-me ~ p.from-me:not(:last-child) {
+		  margin: 0.25rem 0 0;
+		}
+
+		p.from-me ~ p.from-me:last-child {
+		  margin-bottom: 0.5rem;
+		}
+
+		p.from-them {
+		  align-items: flex-start;
+		  background-color: #e5e5ea;
+		  color: #000;
+		}
+
+		p.from-them:before {
+		  border-bottom-right-radius: 0.8rem 0.7rem;
+		  border-left: 1rem solid #e5e5ea;
+		  left: -0.35rem;
+		  transform: translate(0, -0.1rem);
+		}
+
+		p.from-them::after {
+		  background-color: #fff;
+		  border-bottom-right-radius: 0.5rem;
+		  left: 20px;
+		  transform: translate(-30px, -2px);
+		  width: 10px;
+		}
+
+		p[class^="from-"].emoji {
+		  background: none;
+		  font-size: 2.5rem;
+		}
+
+		p[class^="from-"].emoji::before {
+		  content: none;
+		}
+
+		.no-tail::before {
+		  display: none;
+		}
+
+		.margin-b_none {
+		  margin-bottom: 0 !important;
+		}
+
+		.margin-b_one {
+		  margin-bottom: 1rem !important;
+		}
+
+		.margin-t_one {
+		  margin-top: 1rem !important;
+		}
+		  .imessage p {
+			margin: 0.5rem 0;
+		  }
+		
+		@font-face {
+  font-family: "SanFrancisco";
+  src:
+    url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff2") format("woff2"),
+    url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff") format("woff");
+}
+
+	
+	</style>
+</head>
+
+<body>
+	<h1 class= "main">Results of your Fake convo!</h1>
+
+	<div class="imessage">
+	</div>
+	
+	<script>
+        // Read the data from localStorage
+        const jsonData = localStorage.getItem('formattedScriptData');
+        if (jsonData) {
+            const data = JSON.parse(jsonData);
+
+            // Use the data to update the content of this HTML file
+            const script = data.script;
+            const speaker1Prefix = data.speaker1Prefix;
+            const speaker2Prefix = data.speaker2Prefix;
+
+            const lines = script.split('\n');
+            const filteredLines = lines
+                .map(line => line.trim()) // Remove leading/trailing whitespace
+                .filter(line => line !== ''); // Filter out empty lines
+
+            let formattedScript = '';
+            let isReceiveConsecutive = false; // Track if we are in a consecutive sequence of receive elements
+            let isSendConsecutive = false; // Track if we are in a consecutive sequence of send elements
+
+            for (let i = 0; i < filteredLines.length; i++) {
+                let line = filteredLines[i];
+                if (line.startsWith(speaker1Prefix)) {
+                    line = line.slice(speaker1Prefix.length).trim();
+
+                    // Check if the next line is also a "receive" element
+                    if (i < filteredLines.length - 1 && filteredLines[i + 1].startsWith(speaker1Prefix)) {
+                        formattedScript += `<p class="from-me no-tail">${line}</p>`;
+                        isReceiveConsecutive = true;
+                    } else {
+                        formattedScript += `<p class="from-me${isReceiveConsecutive ? ' ' : ''}">${line}</p>`;
+                        isReceiveConsecutive = false;
+						
+						// Add an empty line at the end of the sequence
+                        if (!isReceiveConsecutive) {
+                            formattedScript += '<p class="filler" style="margin: 2px;"></p>';
+                        }
+                    }
+                } else if (line.startsWith(speaker2Prefix)) {
+                    line = line.slice(speaker2Prefix.length).trim();
+
+                    // Check if the next line is also a "send" element
+                    if (i < filteredLines.length - 1 && filteredLines[i + 1].startsWith(speaker2Prefix)) {
+                        formattedScript += `<p class="from-them no-tail">${line}</p>`;
+                        isSendConsecutive = true;
+                    } else {
+                        formattedScript += `<p class="from-them${isSendConsecutive ? ' ' : ''} ">${line}</p>`;
+                        isSendConsecutive = false;
+
+                        // Add an empty line at the end of the sequence
+                        if (!isSendConsecutive) {
+                            formattedScript += '<p class="filler" style="margin: 2px;"></p>';
+                        }
+                    }
+                } else {
+                    formattedScript += `<p>${line}</p>`;
+                    isReceiveConsecutive = false;
+                    isSendConsecutive = false;
+                }
+            }
+
+            const formattedScriptContainer = document.querySelector(".imessage");
+            formattedScriptContainer.innerHTML = formattedScript;
+        }
+    </script>
+</body>
+</html>

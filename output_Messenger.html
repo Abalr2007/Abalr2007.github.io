@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+
+        .main{
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            max-width: 100%;
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 21.440px;
+		}
+
+        .formatted-script{
+            font-family: "SanFrancisco";
+            font-size: 16px;
+            font-weight: normal;
+            max-width: 320px;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--page-background);
+        }
+
+        /* Your existing CSS styles here */
+        .formatted-script .receive,
+        .formatted-script .send {
+            margin-bottom: 20px; /* Default margin */
+        }
+
+        .formatted-script .receive.consecutive,
+        .formatted-script .send.consecutive {
+            margin-bottom: 5px; /* Reduced margin for consecutive receive and send classes */
+        }
+		
+		.formatted-script .receive::before{
+			width: 0px;
+		}
+		
+		.formatted-script .receive.tailed::before{
+			width: 20px;
+		}
+		
+		.formatted-script .send::before{
+			width: 0px;
+		}
+		
+		.formatted-script .send.tailed::before{
+			width: 20px;
+		}
+		
+		.filler{
+			padding: 2px;
+		}
+    </style>
+    <title>Output</title>
+
+</head>
+
+<body>
+
+    <h1 class="main">Results of your Fake convo!</h1>
+
+    <div class="formatted-script">
+    <script>
+        // Read the data from localStorage
+        const jsonData = localStorage.getItem('formattedScriptData');
+        if (jsonData) {
+            const data = JSON.parse(jsonData);
+
+            // Use the data to update the content of this HTML file
+            const script = data.script;
+            const speaker1Prefix = data.speaker1Prefix;
+            const speaker2Prefix = data.speaker2Prefix;
+
+            const lines = script.split('\n');
+            const filteredLines = lines
+                .map(line => line.trim()) // Remove leading/trailing whitespace
+                .filter(line => line !== ''); // Filter out empty lines
+
+            let formattedScript = '';
+            let isReceiveConsecutive = false; // Track if we are in a consecutive sequence of receive elements
+            let isSendConsecutive = false; // Track if we are in a consecutive sequence of send elements
+
+            for (let i = 0; i < filteredLines.length; i++) {
+                let line = filteredLines[i];
+                if (line.startsWith(speaker1Prefix)) {
+                    line = line.slice(speaker1Prefix.length).trim();
+
+                    // Check if the next line is also a "receive" element
+                    if (i < filteredLines.length - 1 && filteredLines[i + 1].startsWith(speaker1Prefix)) {
+                        formattedScript += `<p class="receive consecutive">${line}</p>`;
+                        isReceiveConsecutive = true;
+                    } else {
+                        formattedScript += `<p class="receive${isReceiveConsecutive ? ' consecutive' : ''} tailed">${line}</p>`;
+                        isReceiveConsecutive = false;
+						
+						// Add an empty line at the end of the sequence
+                        if (!isReceiveConsecutive) {
+                            formattedScript += '<p class="filler"></p>';
+                        }
+                    }
+                } else if (line.startsWith(speaker2Prefix)) {
+                    line = line.slice(speaker2Prefix.length).trim();
+
+                    // Check if the next line is also a "send" element
+                    if (i < filteredLines.length - 1 && filteredLines[i + 1].startsWith(speaker2Prefix)) {
+                        formattedScript += `<p class="send consecutive">${line}</p>`;
+                        isSendConsecutive = true;
+                    } else {
+                        formattedScript += `<p class="send${isSendConsecutive ? ' consecutive' : ''} tailed">${line}</p>`;
+                        isSendConsecutive = false;
+
+                        // Add an empty line at the end of the sequence
+                        if (!isSendConsecutive) {
+                            formattedScript += '<p class="filler"></p>';
+                        }
+                    }
+                } else {
+                    formattedScript += `<p>${line}</p>`;
+                    isReceiveConsecutive = false;
+                    isSendConsecutive = false;
+                }
+            }
+
+            const formattedScriptContainer = document.querySelector(".formatted-script");
+            formattedScriptContainer.innerHTML += formattedScript;
+        }
+    </script>
+    </div>
+</body>
+
+</html>
