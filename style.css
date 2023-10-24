@@ -3,7 +3,7 @@
   --send-color: white;
   --receive-bg: #E5E5EA;
   --receive-text: black;
-  --page-background: #f0f8ff;
+  --page-background: rgb(244, 244, 244);
 }
 
 body {
