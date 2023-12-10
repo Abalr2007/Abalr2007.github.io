@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Results</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<style>
 		
 		.main{
@@ -21,10 +22,10 @@
 			background-color: #fff;
 			display: flex;
 			flex-direction: column;
-			font-family: "SanFrancisco";
-			font-size: 1.3rem;
+			font-family: "Segoe UI", Arial, sans-serif;
+			font-size: 1rem;
 			margin: 0 auto 1rem;
-			max-width: 600px;
+			max-width: 430px;
 			padding: 0.5rem 1.5rem;
 		}
 
@@ -41,7 +42,7 @@
 		p.from-me {
     			align-self: flex-end;
     			background-color: #f0f0f0;
-    			color: #000000;
+    			color: #4c4c4c;
 		}
 
 		
@@ -67,7 +68,7 @@
 		p.from-them {
     			align-items: flex-start;
     			background-color: #fff;
-    			color: #000000;
+    			color: #4c4c4c;
     			outline: 2px solid #e4e4e4;
 		}
 
@@ -100,6 +101,34 @@
 			margin: 0.5rem 0;
 		  }
 		
+		img.rounded {
+  			object-fit: cover;
+  			border-radius: 50%;
+  			height: 30px;
+  			width: 30px;
+		}
+		
+		.pfp{
+			text-align: center;
+			background-color: #fff;
+		}
+		.pfpimg {
+  			border-radius: 50%;
+  			height: 100px;
+  			width: 100px;
+  		}
+		img.uploaded {
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+        }
+		
+		#userName{
+			font-family: "Segoe UI", Arial, sans-serif;
+			font-size: 30px;
+		}
+		
+		
 		@font-face {
   font-family: "SanFrancisco";
   src:
@@ -113,6 +142,20 @@
 
 <body style="background-color: #f0f8ff;">
 	<h1 class= "main">Results of your Fake convo!</h1>
+	<input type="file" id="imageUpload" accept="image/*">
+	<input type="text" id="nameInput" placeholder="Enter Name">
+
+	
+	<div class="pfp">
+		<img id="userImage" class="pfpimg">
+<h2 id="userName" style="margin: 0px">Name</h2>
+		<h4 style="
+    color: #9a9a9a;
+    font-size: 15px;
+    margin: 0.5px;
+">Instagram</h4>
+		<div class="filler" style= "padding: 5px; background-color: #fff;"></div>
+	</div>
 
 	<div class="imessage">
 	</div>
@@ -152,7 +195,7 @@
 						
 						// Add an empty line at the end of the sequence
                         if (!isReceiveConsecutive) {
-                            formattedScript += '<p class="filler" style="margin: 2px;"></p>';
+                            formattedScript += '<p class="filler" style="margin: 1px;"></p>';
                         }
                     }
                 } else if (line.startsWith(speaker2Prefix)) {
@@ -160,15 +203,15 @@
 
                     // Check if the next line is also a "send" element
                     if (i < filteredLines.length - 1 && filteredLines[i + 1].startsWith(speaker2Prefix)) {
-                        formattedScript += `<p class="from-them no-tail">${line}</p>`;
+                        formattedScript += `<div id=them style="display: flex; align-items: center;"><img src='http://placekitten.com/100/100' class="rounded"/><p class="from-them no-tail" style="margin-left: 0.5em;">${line}</p></div>`;
                         isSendConsecutive = false;
                     } else {
-                        formattedScript += `<p class="from-them no-tail">${line}</p>`;
+                        formattedScript += `<div id=them style="display: flex; align-items: center;"><img src='http://placekitten.com/100/100' class="rounded"/><p class="from-them no-tail" style="margin-left: 0.5em;">${line}</p></div>`;
                         isSendConsecutive = false;
 
                         // Add an empty line at the end of the sequence
                         if (!isSendConsecutive) {
-                            formattedScript += '<p class="filler" style="margin: 2px;"></p>';
+                            formattedScript += '<p class="filler" style="margin: 1px;"></p>';
                         }
                     }
                 } else {
@@ -180,6 +223,46 @@
 
             const formattedScriptContainer = document.querySelector(".imessage");
             formattedScriptContainer.innerHTML = formattedScript;
+        }
+		const imageUploadInput = document.getElementById('imageUpload');
+        const nameInput = document.getElementById('nameInput');
+        const userName = document.getElementById('userName');
+
+        imageUploadInput.addEventListener('change', handleImageUpload);
+        // Add an event listener for the name input
+        nameInput.addEventListener('input', handleNameInput);
+        // Add an event listener for the submit button
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.addEventListener('click', handleImageSubmit);
+
+        function handleImageUpload() {
+            const uploadedImage = document.getElementById('userImage');
+            const file = imageUploadInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    uploadedImage.src = e.target.result;
+
+                    const messages = document.querySelectorAll('.imessage img.rounded');
+                    messages.forEach(message => {
+                        message.src = e.target.result;
+                    });
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Update the h2 text based on the input value
+        function handleNameInput() {
+            userName.textContent = nameInput.value || 'Name';
+        }
+
+        function handleImageSubmit() {
+            // You can add any additional logic for form submission if needed
+            // For now, you can leave this function empty or add custom logic
         }
     </script>
 </body>
