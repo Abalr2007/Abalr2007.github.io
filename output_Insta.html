@@ -46,9 +46,9 @@
 		}
 
 		p.from-me {
-		  align-self: flex-end;
-		  background-color: #248bf5;
-		  color: #fff; 
+    			align-self: flex-end;
+    			background-color: #f0f0f0;
+    			color: #000000;
 		}
 
 		p.from-me::before {
@@ -84,9 +84,10 @@
 		}
 
 		p.from-them {
-		  align-items: flex-start;
-		  background-color: #e5e5ea;
-		  color: #000;
+    			align-items: flex-start;
+    			background-color: #fff;
+    			color: #000000;
+    			outline: 2px solid #e4e4e4;
 		}
 
 		p.from-them:before {
@@ -177,9 +178,9 @@
                     // Check if the next line is also a "receive" element
                     if (i < filteredLines.length - 1 && filteredLines[i + 1].startsWith(speaker1Prefix)) {
                         formattedScript += `<p class="from-me no-tail">${line}</p>`;
-                        isReceiveConsecutive = true;
+                        isReceiveConsecutive = false;
                     } else {
-                        formattedScript += `<p class="from-me${isReceiveConsecutive ? ' ' : ''}">${line}</p>`;
+			formattedScript += `<p class="from-me no-tail">${line}</p>`;
                         isReceiveConsecutive = false;
 						
 						// Add an empty line at the end of the sequence
@@ -193,9 +194,9 @@
                     // Check if the next line is also a "send" element
                     if (i < filteredLines.length - 1 && filteredLines[i + 1].startsWith(speaker2Prefix)) {
                         formattedScript += `<p class="from-them no-tail">${line}</p>`;
-                        isSendConsecutive = true;
+                        isSendConsecutive = false;
                     } else {
-                        formattedScript += `<p class="from-them${isSendConsecutive ? ' ' : ''} ">${line}</p>`;
+                        formattedScript += `<p class="from-them no-tail">${line}</p>`;
                         isSendConsecutive = false;
 
                         // Add an empty line at the end of the sequence
