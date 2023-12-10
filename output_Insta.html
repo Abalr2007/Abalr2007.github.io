@@ -37,34 +37,15 @@
 		  word-wrap: break-word;
 		}
 
-		.imessage p::before,
-		.imessage p::after {
-		  bottom: -0.1rem;
-		  content: "";
-		  height: 1rem;
-		  position: absolute;
-		}
-
+		
 		p.from-me {
     			align-self: flex-end;
     			background-color: #f0f0f0;
     			color: #000000;
 		}
 
-		p.from-me::before {
-		  border-bottom-left-radius: 0.8rem 0.7rem;
-		  border-right: 1rem solid #248bf5;
-		  right: -0.35rem;
-		  transform: translate(0, -0.1rem);
-		}
+		
 
-		p.from-me::after {
-		  background-color: #fff;
-		  border-bottom-left-radius: 0.5rem;
-		  right: -40px;
-		  transform:translate(-30px, -2px);
-		  width: 10px;
-		}
 
 		p[class^="from-"] {
 		  margin: 1rem 0;
@@ -90,20 +71,6 @@
     			outline: 2px solid #e4e4e4;
 		}
 
-		p.from-them:before {
-		  border-bottom-right-radius: 0.8rem 0.7rem;
-		  border-left: 1rem solid #e5e5ea;
-		  left: -0.35rem;
-		  transform: translate(0, -0.1rem);
-		}
-
-		p.from-them::after {
-		  background-color: #fff;
-		  border-bottom-right-radius: 0.5rem;
-		  left: 20px;
-		  transform: translate(-30px, -2px);
-		  width: 10px;
-		}
 
 		p[class^="from-"].emoji {
 		  background: none;
