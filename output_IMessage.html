@@ -26,7 +26,7 @@
 			margin: 0 auto 1rem;
 			max-width: 600px;
 			padding: 0.5rem 1.5rem;
-		}
+		margin-top: 0px; }
 
 		.imessage p {
 		  border-radius: 1.15rem;
@@ -139,15 +139,107 @@
     url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff") format("woff");
 }
 
+.iphone-msg-header {
+    position: relative;
+    padding: 8px 20px;
+    background: #f5f5f5;
+    border-bottom: 0.6px solid #d0d0d0;
+}
+
+.iphone-msg-header .iphone-msg-header-back {
+    position: absolute;
+    top: 64%;
+	scale: 2;
+    left: 0;
+    transform: translate(0, -50%);
+}
+		.iphone-msg-header .modal-title {
+    position: relative;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+		.iphone-msg-header .modal-title .modal-title-img {
+    position: relative;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, #878b94, #a4a8b4);
+}
+		.iphone-msg-header .modal-title .modal-title-img img {
+    height: 75px;
+    width: 58px;
+    position: relative;
+    left: 0px;
+    top: 8px;
+}
+		.iphone-msg-header .modal-title .reciver-name {
+    position: relative;
+    margin-top: 16px;
+    margin-left: 6px;
+    color: #000000;
+    font-weight: 400;
+	font-size: 23px;
+	font-family: "SanFrancisco";
+    display: inline-block;
+}
+		img.fleche-call-icon {
+    margin-top: -1px;
+    margin-left: 0px;
+			transform: translate(0, 2px);
+}
+		
+		.headerimsg {
+		  display: flex;
+		  flex-direction: column;
+		  font-family: "SanFrancisco";
+		  font-size: 1.25rem;
+		  margin: 0 auto 1rem;
+		  max-width: 647px;
+		  padding: 0.5rem 1.5rem;
+		  padding-bottom: 0px;
+			margin-bottom: 0px;
+			position:sticky;
+			top: 0;
+			z-index: 1000;
+		}
+		
 	
 	</style>
 </head>
 
 <body style="background-color: #f0f8ff;">
 	<h1 class= "main">Results of your Fake convo!</h1>
+			<input id="ContactName" type="text" value="ContactName" oninput="updateText()">
 
+	
+		<div class="headerimsg">
+	<div class="iphone-msg-header">
+            	<div class="iphone-msg-header-back">
+                	<img alt="iphone arrow" src="iphone-arrow.png" width="11px;" style="margin-left:15px;">
+                </div>
+                <div class="modal-title text-messenger-ios-title">
+                     <div class="modal-title-img whatsapp-ios-img">
+                         <img alt="user icon" src="https://prankshit.com/fr/assets/images/android-msg-user-icon.png">
+                     </div>
+                     <div class="reciver-name"><span class="text-name1" id="namej">Mirakle</span>
+                     <img src="https://prankshit.com/fleche-call.png" alt="fleche call fake screenshot capture ecran" width="10" class="fleche-call-icon">
+                     </div>
+                     </div>
+                    </div></div>
 	<div class="imessage">
 	</div>
+	    <script>
+        function updateText() {
+            var inputText = document.getElementById("ContactName").value;
+            document.getElementById("namej").innerText = inputText;
+        }
+    </script>
 	
 	<script>
         // Read the data from localStorage
@@ -214,5 +306,6 @@
             formattedScriptContainer.innerHTML = formattedScript;
         }
     </script>
+
 </body>
 </html>
