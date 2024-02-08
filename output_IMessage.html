@@ -24,12 +24,12 @@
 			font-family: "SanFrancisco";
 			font-size: 1.3rem;
 			margin: 0 auto 1rem;
-			max-width: 600px;
+			max-width: 460px;
 			padding: 0.5rem 1.5rem;
 		margin-top: 0px; }
 
 		.imessage p {
-		  border-radius: 1.15rem;
+		  border-radius: 2.15rem;
 		  line-height: 1.25;
 		  max-width: 75%;
 		  padding: 0.5rem .875rem;
@@ -72,15 +72,15 @@
 		}
 
 		p.from-me ~ p.from-me {
-		  margin: 0.25rem 0 0;
+		  margin: 0.1rem 0 0;
 		}
 
 		p.from-me ~ p.from-me:not(:last-child) {
-		  margin: 0.25rem 0 0;
+		  margin: 0.1rem 0 0;
 		}
 
 		p.from-me ~ p.from-me:last-child {
-		  margin-bottom: 0.5rem;
+		  margin-bottom: 0.15rem;
 		}
 
 		p.from-them {
@@ -129,7 +129,7 @@
 		  margin-top: 1rem !important;
 		}
 		  .imessage p {
-			margin: 0.5rem 0;
+			margin: 0.1rem 0;
 		  }
 		
 		@font-face {
@@ -149,7 +149,7 @@
 .iphone-msg-header .iphone-msg-header-back {
     position: absolute;
     top: 64%;
-	scale: 2;
+	scale: 1.5;
     left: 0;
     transform: translate(0, -50%);
 }
@@ -161,8 +161,8 @@
 }
 		.iphone-msg-header .modal-title .modal-title-img {
     position: relative;
-    height: 75px;
-    width: 75px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto;
@@ -172,19 +172,19 @@
     background: linear-gradient(to top, #878b94, #a4a8b4);
 }
 		.iphone-msg-header .modal-title .modal-title-img img {
-    height: 75px;
-    width: 58px;
+    height: 44px;
+    width: 36px;
     position: relative;
     left: 0px;
-    top: 8px;
+    top: 10px;
 }
 		.iphone-msg-header .modal-title .reciver-name {
     position: relative;
-    margin-top: 16px;
+    margin-top: 5px;
     margin-left: 6px;
     color: #000000;
     font-weight: 400;
-	font-size: 23px;
+	font-size: 18px;
 	font-family: "SanFrancisco";
     display: inline-block;
 }
@@ -200,7 +200,7 @@
 		  font-family: "SanFrancisco";
 		  font-size: 1.25rem;
 		  margin: 0 auto 1rem;
-		  max-width: 647px;
+		  max-width: 508px;
 		  padding: 0.5rem 1.5rem;
 		  padding-bottom: 0px;
 			margin-bottom: 0px;
@@ -209,13 +209,28 @@
 			z-index: 1000;
 		}
 		
+		.filler{
+			 margin: 0.25px;
+		}
+		
+		.text-name1{
+			font-family: SF Pro Display, sans-serif;
+		}
+		
+		.name-input {
+			margin-left: 45%;
+			
+}
+
+		
 	
 	</style>
+	<link href="https://v1.fontapi.ir/css/SFProDisplay:500@500" rel="stylesheet">
 </head>
 
 <body style="background-color: #f0f8ff;">
 	<h1 class= "main">Results of your Fake convo!</h1>
-			<input id="ContactName" type="text" value="ContactName" oninput="updateText()">
+			<div class="name-input"><input id="ContactName" type="text" value="ContactName" oninput="updateText()"></div>
 
 	
 		<div class="headerimsg">
@@ -276,7 +291,7 @@
 						
 						// Add an empty line at the end of the sequence
                         if (!isReceiveConsecutive) {
-                            formattedScript += '<p class="filler" style="margin: 2px;"></p>';
+                            formattedScript += '<p class="filler"></p>';
                         }
                     }
                 } else if (line.startsWith(speaker2Prefix)) {
@@ -292,7 +307,7 @@
 
                         // Add an empty line at the end of the sequence
                         if (!isSendConsecutive) {
-                            formattedScript += '<p class="filler" style="margin: 2px;"></p>';
+                            formattedScript += '<p class="filler"></p>';
                         }
                     }
                 } else {
